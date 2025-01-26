@@ -1,0 +1,15 @@
+{
+  "name": "v-descriptor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cp v-descriptor.js docs/v-descriptor.js",
+    "up": "bash up.sh",
+    "versionate": "bash versionate.sh",
+    "test": "npx http-server -c-1 docs -o index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

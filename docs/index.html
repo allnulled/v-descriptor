@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <script src="v-descriptor.js"></script>
+    <title>v-descriptor example</title>
+    <style>
+        .fondoNegro {
+            background-color: black;
+        }
+
+        .fondoRojo {
+            background-color: red;
+        }
+
+        .fondoRojoImportante {
+            background-color: red !important;
+        }
+
+        .letraBlanca {
+            color: white;
+        }
+
+        .letraGrande {
+            font-size: 21px;
+        }
+    </style>
+    <script>
+        window.stylingDescriptor = {
+            titulo: ["fondoNegro", "letraBlanca"],
+            principal: ["letraGrande"],
+            emergencia: ["fondoRojoImportante"]
+        };
+    </script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        Vue.component("app", {
+            template: `
+                <div>
+                    <div v-descriptor="'titulo principal emergencia'">
+                        Este mensaje debería verse en rojooo
+                    </div>
+                </div>
+            `
+        });
+        const app = new Vue({
+            render: h => h(Vue.options.components.app),
+        }).$mount("#app");
+    </script>
+</body>
+
+</html>
