@@ -1,6 +1,6 @@
 # v-descriptor
 
-Inject CSS classes with meaning.
+Inject CSS classes with meaning. For vue.js (v2).
 
 ## Installation
 
