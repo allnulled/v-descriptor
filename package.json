@@ -1,15 +1,15 @@
 {
-  "name": "v-descriptor",
+  "name": "@allnulled/v-descriptor",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Inject CSS classes with meaning. For vue.js (v2).",
+  "main": "v-descriptor.js",
   "scripts": {
     "build": "cp v-descriptor.js docs/v-descriptor.js",
-    "up": "bash up.sh",
-    "versionate": "bash versionate.sh",
-    "test": "npx http-server -c-1 docs -o index.html"
+    "up": "npm run build && bash up.sh",
+    "versionate": "npm run build && bash versionate.sh",
+    "test": "npm run build && npx http-server -c-1 docs -o index.html"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": ["vue2", "vue", "css"],
+  "author": "allnulled",
+  "license": "WTFPL"
 }
