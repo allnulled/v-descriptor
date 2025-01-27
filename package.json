@@ -7,7 +7,8 @@
     "build": "cp v-descriptor.js docs/v-descriptor.js",
     "up": "npm run build && bash up.sh",
     "versionate": "npm run build && bash versionate.sh",
-    "test": "npm run build && npx http-server -c-1 docs -o index.html"
+    "test": "echo 'no test from node.js for v-descriptor'",
+    "test-browser": "npm run build && npx http-server -c-1 docs -o index.html"
   },
   "keywords": ["vue2", "vue", "css"],
   "author": "allnulled",

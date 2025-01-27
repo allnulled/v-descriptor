@@ -31,3 +31,4 @@ const app = new Vue({
     render: h => h(Vue.options.components.app),
 }).$mount("#app");
 ```
+
