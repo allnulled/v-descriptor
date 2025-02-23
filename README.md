@@ -32,3 +32,10 @@ const app = new Vue({
 }).$mount("#app");
 ```
 
+This will make reflect `fondoNegro letraBlanca letraGrande fondoRojoImportante` as classes.
+
+You can use it recursively, and only the *non-solved keys* will become applied as classes, **(caution:) unless it contains `.` in the key**. This allows you to use `.` as namespacer for document sections, which makes sense, as the names of these sections will be absolutely **virtual** and will have no direct interaction with the DOM in any step.
+
+Only the unsolved keys that do not contain `.` will be applied as class.
+
+With this rule, and aware that you have to `"'whatever w2 w3'"` (so, `"'` to open and `'"` to close), you can go straightforward.
