@@ -1,25 +1,34 @@
-Vue.directive("descriptor", {
-  bind(el, binding) {
+(() => {
+
+  const getDescriptorKeys = function (el, binding) {
+    if (binding.expression.startsWith("'") || binding.expression.startsWith('"')) {
+      return (binding.value || el.getAttribute("descriptor")).split(" ");
+    }
+    return (binding.expression || el.getAttribute("descriptor")).split(" ");
+  };
+
+  Vue.directive("descriptor", {
+    bind(el, binding) {
       const resolveClasses = key => {
-          let resolved = window.stylingDescriptor[key];
-          if (!resolved) return key;
-          if(typeof resolved === "string") {
-            resolved = resolved.split(" ");
-          }
-          return resolved.map(subKey => resolveClasses(subKey)).flat();
+        let resolved = window.stylingDescriptor[key];
+        if (!resolved) return key;
+        if (typeof resolved === "string") {
+          resolved = resolved.split(" ");
+        }
+        return resolved.map(subKey => resolveClasses(subKey)).flat();
       };
-      const descriptorKeys = (binding.value || el.getAttribute("descriptor")).split(" ");
+      const descriptorKeys = getDescriptorKeys(el, binding);
       const descriptorClasses = descriptorKeys.map(key => resolveClasses(key)).flat();
       descriptorClasses.forEach(cls => {
-        if(cls.indexOf(".") === -1) {
+        if (cls.indexOf(".") === -1) {
           el.classList.add(cls);
         }
       });
-  }
-});
+    }
+  });
 
-const styleTag = document.createElement("style");
-styleTag.textContent = `
+  const styleTag = document.createElement("style");
+  styleTag.textContent = `
   .title_of_form {
     border: 1px solid #113;
     box-shadow: 0 0 4px black;
@@ -86,16 +95,19 @@ styleTag.textContent = `
     padding-top: 4px;
   }
 `;
-document.body.appendChild(styleTag);
+  document.body.appendChild(styleTag);
 
-window.stylingDescriptor = {
-  "agenda.calendar.buttons_panel_1": "calendar_main_panel calendar_buttons_panel_1",
-  "agenda.task_form.title": "title_of_form",
-  "agenda.task_form.block": "block_of_form",
-  "agenda.task_form.block_of_add_button": "block_of_form vertically_padded_1",
-  "agenda.task_form.block_of_aggregated_field": "bordered_1",
-  "agenda.task_form.section": "with_separator_on_bottom_1",
-  "agenda.task_form.aggregations.block": "block_of_form",
-  "agenda.task_form.aggregations.lateral_button": "lateral_button",
-  "agenda.task_form.aggregations.lateral_button_cell": "lateral_button_cell",
-}
+  window.stylingDescriptor = {
+    "agenda.calendar.buttons_panel_1": "calendar_main_panel calendar_buttons_panel_1",
+    "agenda.task_form.title": "title_of_form",
+    "agenda.task_form.block": "block_of_form",
+    "agenda.task_form.block_of_add_button": "block_of_form vertically_padded_1",
+    "agenda.task_form.block_of_aggregated_field": "bordered_1",
+    "agenda.task_form.section": "with_separator_on_bottom_1",
+    "agenda.task_form.aggregations.block": "block_of_form",
+    "agenda.task_form.aggregations.lateral_button": "lateral_button",
+    "agenda.task_form.aggregations.lateral_button_cell": "lateral_button_cell",
+    "lsw_table.no_data_provided_message": "pad_top_2 pad_bottom_2"
+  }
+
+})();
